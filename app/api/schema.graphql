@@ -42,7 +42,6 @@ type AuthorsResult {
     authors: [Author]
 }
 
-
 type Query {
     listPosts: PostsResult!
     getPost(id: ID!): PostResult!
