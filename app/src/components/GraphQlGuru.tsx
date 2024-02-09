@@ -10,14 +10,14 @@ export const GraphQlGuru = ({}) => {
     const [introspectionResult, setIntrospectionResult] = useState('');
     const [response, setResponse] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-  
+    const [showResponse, setShowResponse] = useState(true);
+
     const handleChange = (event: any) => {
       setQuery(event.target.value);
     }
   
-    const clearQuery = () => {
-      setQuery('');
-      setResponse('');
+    const hideResponse = () => {
+      setShowResponse(!showResponse);
     }
 
     const getQuery = async () => {
@@ -51,12 +51,12 @@ export const GraphQlGuru = ({}) => {
         <button type="button" onClick={getQuery} style={{marginBottom: '5px'}}>
           Submit
         </button>
-        {response && (<button type="button" onClick={clearQuery}>
-          Clear
+        {response && (<button type="button" onClick={hideResponse}>
+          {showResponse ? 'Hide' : 'Show'}
         </button>)}
 
         {isLoading && (<div style={{marginLeft: '10px' }}>Loading...</div>)}
-        {response && (<ReactMarkdown>{response}</ReactMarkdown>)}
+        {response && showResponse && (<ReactMarkdown>{response}</ReactMarkdown>)}
       </div>
 
     );
