@@ -86,3 +86,17 @@ def update_post_resolver(obj, info, id, title, description):
     except AttributeError:  # Post not found
         payload = {"success": False, "errors": [f"item matching id {_id} not found"]}
     return payload
+
+
+@convert_kwargs_to_snake_case
+def delete_post_resolver(obj, id):
+    try:
+        _id = int(id)  # ensure id is an integer to avoid errors
+        post = all_posts[_id - 1]
+        if post:
+            # this update is not persistent since this is a demo
+            all_posts.remove(post)
+        payload = {"success": True, "post": post}
+    except AttributeError:  # Post not found
+        payload = {"success": False, "errors": [f"item matching id {_id} not found"]}
+    return payload
