@@ -1,12 +1,13 @@
 import OpenAI from "openai";
-import { OpenAIStream, StreamingTextResponse } from 'ai'
 
-const apiKey = process.env.OPENAI_API_KEY;
-const organization = process.env.OPENAI_ORG_ID;
+const apiKey = process.env.REACT_APP_OPENAI_API_KEY;
+const organization = process.env.REACT_APP_OPENAI_ORG_ID;
+
 
 const openai: OpenAI = new OpenAI({
     apiKey,
     organization,
+    dangerouslyAllowBrowser: true
 });
   
 export const post = async (query: string, schema: string) => {
@@ -16,7 +17,7 @@ export const post = async (query: string, schema: string) => {
           messages: [
             {
               role: "system",
-              content: "You are a helpful assistent designed to output graphql."
+              content: "You are a helpful assistent designed to output only formatted graphql."
             },
             {
               role: "system",

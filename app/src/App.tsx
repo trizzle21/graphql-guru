@@ -42,10 +42,11 @@ async function postData(url = "graphql", data = {}) {
 
 
 const App = () => {
-  
   const fetcher = createGraphiQLFetcher({ url: '/graphql' });
   const [query, setQuery] = useState('');
   const [introspectionResult, setIntrospectionResult] = useState('');
+  const [response, setResponse] = useState('');
+
 
   const handleChange = (event: any) => {
     setQuery(event.target.value);
@@ -53,9 +54,10 @@ const App = () => {
 
   const getQuery = async () => {
     // todo: send query to server
-    console.log(query);
     await post(query, introspectionResult).then((response) => {
-      console.log(response);
+      if (response) {
+        setResponse(response);
+      }
     });
   }
 
@@ -78,14 +80,17 @@ const App = () => {
       </div>
 
       <div style={{display:'flex', flexDirection:'column', width: '50%', marginLeft: '10px'}}>
-        <p>Write a query here:</p>
+        <div>
+          <h5>Write a query here:</h5>
+          <p>e.g.: "can you write me a query to get all posts", "can you write me a query to get a post"</p>
+        </div>
         <input type="text" value={query} onChange={handleChange} style={{marginBottom: '5px'}}/>
         <button type="button" onClick={getQuery}>
           Submit
         </button>
       </div>
 
-      {/* <div>{introspectionResult}</div> */}
+      {response && (<div style={{marginLeft: '10px', width: '50%', }}>{response}</div>)}
     </div>
   );
 }
