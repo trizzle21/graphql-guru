@@ -13,7 +13,7 @@ cp .env.example .env
 ```
 
 ## Setting up Python
-_This was tested with Python 3.11, this may work with other versions of Python, but can't be guaranteed. If you have a pyenv to switch to 3.11 for best results_
+_This was tested with Python 3.9, this may work with other versions of Python, but can't be guaranteed. If you have a pyenv to switch to 3.9 for best results_
 
 You will need version 3.9+ of python for this project.
 
