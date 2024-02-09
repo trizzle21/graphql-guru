@@ -1,29 +1,43 @@
 from ariadne import convert_kwargs_to_snake_case
 
 # all the resolvers we need
+all_authors = [
+    {
+        "id": 0,
+        "name": "John Doe",
+        "email": "johnDoe@test.com",
+        "created_at": "2021-01-01T00:00:00Z",
+    },
+    {"id": 1, "name": "Jane Doe", "email": "janeDoe@test.com"},
+]
+
 all_posts = [
     {
         "id": 0,
         "title": "how to do graphql",
         "description": "how to make graphql requests",
+        "author": all_authors[0],
         "created_at": "2021-01-01T00:00:00Z",
     },
     {
         "id": 1,
         "title": "how to win gpt competition",
         "description": "just make cool stuff",
+        "author": all_authors[0],
         "created_at": "2021-01-02T00:00:00Z",
     },
     {
         "id": 2,
         "title": "how to do gpt",
         "description": "how to do machine learning",
+        "author": all_authors[1],
         "created_at": "2021-01-3T00:00:00Z",
     },
     {
         "id": 3,
         "title": "how to sleep",
         "description": "steps to sleep more",
+        "author": all_authors[1],
         "created_at": "2021-01-04T00:00:00Z",
     },
 ]
@@ -46,6 +60,16 @@ def get_post_resolver(obj, info, id):
         payload = {"success": True, "post": post}
     except AttributeError:
         payload = {"success": False, "errors": [f"Post item matching {id} not found"]}
+    return payload
+
+
+@convert_kwargs_to_snake_case
+def get_author_resolver(obj, info, id):
+    try:
+        author = all_authors[id]
+        payload = {"success": True, "author": author}
+    except AttributeError:
+        payload = {"success": False, "errors": [f"Author item matching {id} not found"]}
     return payload
 
 

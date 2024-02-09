@@ -15,6 +15,11 @@ export const GraphQlGuru = ({}) => {
       setQuery(event.target.value);
     }
   
+    const clearQuery = () => {
+      setQuery('');
+      setResponse('');
+    }
+
     const getQuery = async () => {
       setIsLoading(true);
       setResponse('');
@@ -43,9 +48,13 @@ export const GraphQlGuru = ({}) => {
           <p style={{margin: '0px'}}>Example queries: "can you write me a query to get all posts", "can you write me a query to get a post"</p>
         </div>
         <input type="text" value={query} onChange={handleChange} style={{marginBottom: '5px'}}/>
-        <button type="button" onClick={getQuery}>
+        <button type="button" onClick={getQuery} style={{marginBottom: '5px'}}>
           Submit
         </button>
+        {response && (<button type="button" onClick={clearQuery}>
+          Clear
+        </button>)}
+
         {isLoading && (<div style={{marginLeft: '10px' }}>Loading...</div>)}
         {response && (<ReactMarkdown>{response}</ReactMarkdown>)}
       </div>

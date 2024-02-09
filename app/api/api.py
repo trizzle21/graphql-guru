@@ -18,11 +18,13 @@ from resolvers import (
     create_post_resolver,
     update_post_resolver,
     delete_post_resolver,
+    get_author_resolver,
 )
 
 query = ObjectType("Query")
 query.set_field("listPosts", list_posts_resolver)
 query.set_field("getPost", get_post_resolver)
+query.set_field("getAuthor", get_author_resolver)
 
 mutation = ObjectType("Mutation")
 mutation.set_field("createPost", create_post_resolver)
