@@ -3,25 +3,25 @@ from ariadne import convert_kwargs_to_snake_case
 # all the resolvers we need
 all_posts = [
     {
-        "id": 1,
+        "id": 0,
         "title": "how to do graphql",
         "description": "how to make graphql requests",
         "created_at": "2021-01-01T00:00:00Z",
     },
     {
-        "id": 2,
+        "id": 1,
         "title": "how to win gpt competition",
         "description": "just make cool stuff",
         "created_at": "2021-01-02T00:00:00Z",
     },
     {
-        "id": 3,
+        "id": 2,
         "title": "how to do gpt",
         "description": "how to do machine learning",
         "created_at": "2021-01-3T00:00:00Z",
     },
     {
-        "id": 4,
+        "id": 3,
         "title": "how to sleep",
         "description": "steps to sleep more",
         "created_at": "2021-01-04T00:00:00Z",
@@ -43,7 +43,7 @@ def list_posts_resolver(obj, info):
 def get_post_resolver(obj, info, id):
     try:
         post = Post.query.get(id)
-        payload = {"success": True, "post": post.to_dict()}
+        payload = {"success": True, "post": post}
     except AttributeError:
         payload = {"success": False, "errors": [f"Post item matching {id} not found"]}
     return payload
@@ -62,7 +62,7 @@ def create_post_resolver(obj, info, title, description):
         all_posts.append(
             post
         )  # add to the list of posts. this not persistent since this is a demo
-        payload = {"success": True, "post": post.to_dict()}
+        payload = {"success": True, "post": post}
     except ValueError:
         payload = {
             "success": False,
@@ -76,11 +76,13 @@ def create_post_resolver(obj, info, title, description):
 @convert_kwargs_to_snake_case
 def update_post_resolver(obj, info, id, title, description):
     try:
-        post = all_posts[id - 1]
+        _id = int(id)  # ensure id is an integer to avoid errors
+        post = all_posts[_id - 1]
         if post:
+            # this update is not persistent since this is a demo
             post["title"] = title
             post["description"] = description
-        payload = {"success": True, "post": post.to_dict()}
+        payload = {"success": True, "post": post}
     except AttributeError:  # Post not found
-        payload = {"success": False, "errors": ["item matching id {id} not found"]}
+        payload = {"success": False, "errors": [f"item matching id {_id} not found"]}
     return payload
