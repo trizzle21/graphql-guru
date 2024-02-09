@@ -1,6 +1,43 @@
-# Getting Started with Create React App
+# Installation
+_This was tested with Node 20, this may work with other versions of node, but can't be guaranteed. If you have a node version manager (nvm/nodenv) to switch to 20 for best results_
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+After cloning run
+```
+yarn install
+```
+
+## Adding env keys
+You will be told where to find the appropriate API key and org id at the event. To add them to this project, copy the example environment file and add your keys
+```
+cp .env.example .env
+```
+
+## Setting up Python
+_This was tested with Python 3.11, this may work with other versions of Python, but can't be guaranteed. If you have a pyenv to switch to 3.11 for best results_
+
+You will need version 3.9+ of python for this project.
+
+In a different shell window from the front-end, you'
+```shell
+>>> cd api
+>>> python3 -m venv venv
+>>> source venv/bin/activate
+>>> pip install -r requirements.txt
+>>> cd ..
+>>> yarn start-api
+```
+
+## Running the Frontend
+
+To install the FE dependencies run:
+```
+yarn install
+```
+
+To start the application in Development mode, 
+```
+yarn start
+```
 
 ## Available Scripts
 
@@ -13,6 +50,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
+
+### `yarn start-api`
+
+This runs the python backend webservice that backs the graphql api
 
 ### `yarn test`
 
@@ -38,9 +79,3 @@ If you aren’t satisfied with the build tool and configuration choices, you can
 Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).

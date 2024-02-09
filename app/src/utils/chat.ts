@@ -17,7 +17,7 @@ export const post = async (query: string, schema: string) => {
           messages: [
             {
               role: "system",
-              content: "You are a helpful assistent designed to output only formatted graphql."
+              content: "You are a wise sage that outputs graphql queries"
             },
             {
               role: "system",
