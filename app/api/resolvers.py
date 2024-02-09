@@ -8,7 +8,12 @@ all_authors = [
         "email": "johnDoe@test.com",
         "created_at": "2021-01-01T00:00:00Z",
     },
-    {"id": 1, "name": "Jane Doe", "email": "janeDoe@test.com"},
+    {
+        "id": 1,
+        "name": "Jane Doe",
+        "email": "janeDoe@test.com",
+        "created_at": "2021-02-01T00:00:00Z",
+    },
 ]
 
 all_posts = [
@@ -112,13 +117,13 @@ def update_post_resolver(obj, info, id, title, description):
 
 
 @convert_kwargs_to_snake_case
-def delete_post_resolver(obj, id):
+def delete_post_resolver(obj, info, id):
     try:
         _id = int(id)  # ensure id is an integer to avoid errors
         post = all_posts[_id - 1]
         if post:
             # this update is not persistent since this is a demo
-            all_posts.remove(post)
+            del all_posts[_id - 1]
         payload = {"success": True, "post": post}
     except AttributeError:  # Post not found
         payload = {"success": False, "errors": [f"item matching id {_id} not found"]}
