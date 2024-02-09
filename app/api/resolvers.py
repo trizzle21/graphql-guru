@@ -46,7 +46,6 @@ all_posts = [
 @convert_kwargs_to_snake_case
 def list_posts_resolver(obj, info):
     try:
-        print(all_posts)
         payload = {"success": True, "posts": all_posts}
     except Exception as error:
         payload = {"success": False, "errors": [str(error)]}
