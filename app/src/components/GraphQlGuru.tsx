@@ -32,7 +32,6 @@ export const GraphQlGuru = ({}) => {
     useEffect(() => {
       introspectGraphql('/graphql', { query: introspectionQuery })
         .then(data => {
-          console.log(data); // JSON data parsed by `response.json()` call
           setIntrospectionResult(JSON.stringify(data));
         });
     }, [setIntrospectionResult]);
@@ -40,7 +39,7 @@ export const GraphQlGuru = ({}) => {
     return (
         <div style={{display:'flex', flexDirection:'column', width: '100%', marginLeft: '10px'}}>
         <div>
-          <h4 style={{marginBottom: '0px'}}>Graph Guru</h4>
+          <h4 style={{marginBottom: '0px'}}>GraphQL Guru</h4>
           <p style={{margin: '0px'}}>Example queries: "can you write me a query to get all posts", "can you write me a query to get a post"</p>
         </div>
         <input type="text" value={query} onChange={handleChange} style={{marginBottom: '5px'}}/>

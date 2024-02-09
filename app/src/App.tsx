@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from 'react';
 import { createGraphiQLFetcher } from '@graphiql/toolkit';
 import { GraphiQL } from 'graphiql';
 import 'graphiql/graphiql.css';import './App.css';
@@ -26,7 +25,7 @@ const App = () => {
   return (
     <div className="App">
       <header style={{marginLeft:'10px'}}>
-        <h1>Graph Guru Demo</h1>
+        <h1>GraphQL Guru Demo</h1>
       </header>
 
       <div style={{height:'800px'}}>
