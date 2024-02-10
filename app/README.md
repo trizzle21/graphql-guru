@@ -12,12 +12,12 @@ You will be told where to find the appropriate API key and org id at the event. 
 cp .env.example .env
 ```
 
-## Setting up Python
+## Running the Backend
 _This was tested with Python 3.9, this may work with other versions of Python, but can't be guaranteed. If you have a pyenv to switch to 3.9 for best results_
 
 You will need version 3.9+ of python for this project.
 
-In a different shell window from the front-end, you'
+In a different shell tab from the front-end, you'll need to:
 ```shell
 >>> cd api
 >>> python3 -m venv venv
@@ -28,6 +28,9 @@ In a different shell window from the front-end, you'
 ```
 
 ## Running the Frontend
+_This was tested with Node v16.14.0, this may work with other versions of Node, but can't be guaranteed. If you have a nvm to switch to v16.14.0 for best results_
+
+In a separate shell tab from backend, you'll need to setup and run the FE. 
 
 To install the FE dependencies run:
 ```
