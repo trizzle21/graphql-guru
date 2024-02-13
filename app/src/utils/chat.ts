@@ -21,7 +21,7 @@ export const post = async (query: string, schema: string) => {
             },
             {
               role: "system",
-              content: `here is the graphql schema you should use ${schema}`
+              content: `here is the graphql schema you should reference: ${schema}`
             },
             {
                 role: 'user',

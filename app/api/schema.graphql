@@ -18,6 +18,14 @@ type Author {
     createdAt: String!
 }
 
+"""
+    This is dummy type to see if gpt can pick up unused types
+"""
+type Dummy {
+    id: ID!
+    name: String!
+}
+
 type PostResult {
     success: Boolean!
     errors: [String]
